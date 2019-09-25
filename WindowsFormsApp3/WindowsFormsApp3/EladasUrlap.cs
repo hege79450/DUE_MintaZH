@@ -42,13 +42,14 @@ namespace WindowsFormsApp3
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            try{
             if (radioButton1.Checked)
             {
                 Etel et = new Etel();
                 et.Megnevezes = textBox1.Text;
-                et.Mennyiseg = decimal.Parse(textBox2.Text);
+                et.Mennyiseg = decimal.Parse(textBox2.Text);                   
                 et.Egysegar = (int)numericUpDown1.Value;
-                // et.EtelTipusa = EtelTipus
+                //et.EtelTipusa = EtelTipus;
                 term.Add(et);
             }
             else
@@ -67,6 +68,12 @@ namespace WindowsFormsApp3
                 }
 
                 term.Add(it);
+          }
+          }
+            catch(System.FormatException fe)
+            {
+
+                MessageBox.Show($"Hiba: {fe.Message} Nem szerepelhet számon kívül semmilyen karakter a mennyiség mezőben!");
             }
 
         }
